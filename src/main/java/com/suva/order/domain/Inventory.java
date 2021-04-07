@@ -3,6 +3,11 @@ package com.suva.order.domain;
 import java.util.List;
 
 public class Inventory {
+	@Override
+	public String toString() {
+		return "Inventory [id=" + id + ", status=" + status + ", item=" + item + "]";
+	}
+
 	private long id;
 	private String status;
 	private List<Item> item;

@@ -67,6 +67,10 @@ public class InventoryService {
 	@Transactional
 	public Order updateInventoryStore(Inventory inventoryValue) {
 		
+		System.out.print("Inventory" + inventoryValue.toString());
+		if(inventoryValue.getItem() == null || inventoryValue.getItem().isEmpty()) {
+			return new Order(inventoryValue.getId(), INVENTORY_ERROR, "No item present in the order");
+		}
 		Map<Long, com.suva.order.domain.Item> orderItemMap = inventoryValue.getItem().stream()
 				.collect(Collectors.toMap(com.suva.order.domain.Item::getId, item -> item));
 		Iterable<Item> itemIterable = itemRepository.findAllById(orderItemMap.keySet());
